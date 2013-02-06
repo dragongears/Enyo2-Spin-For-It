@@ -1,6 +1,12 @@
-bootplate
-=========
+Spin For It
+===========
 
-Application template for packaged Enyo
+A spinning decision maker app written in JavaScript. Based on the Bootplate template for creating packaged Enyo apps.
 
-Refer to the [Wiki](https://github.com/enyojs/enyo/wiki/Bootplate) for how to get started.
+Requires Enyo and the Layout and Onyx libraries.
+
+https://github.com/enyojs/bootplate
+
+https://github.com/enyojs/enyo
+https://github.com/enyojs/onyx
+https://github.com/enyojs/layout
