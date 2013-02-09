@@ -9,7 +9,8 @@ enyo.kind({
 	],
 
 	stepAnimation: function(inSender, inValue) {
-		this.$.pointer.applyStyle('-webkit-transform', 'rotate(' + (inSender.value) + 'deg)');
+		enyo.dom.transform(this.$.pointer, {rotate: (inSender.value) + 'deg'});
+		//this.$.pointer.applyStyle('-webkit-transform', 'rotate(' + (inSender.value) + 'deg)');
 	},
 
 	spin: function() {
