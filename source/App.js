@@ -10,7 +10,6 @@ enyo.kind({
 
 	stepAnimation: function(inSender, inValue) {
 		enyo.dom.transform(this.$.pointer, {rotate: (inSender.value) + 'deg'});
-		//this.$.pointer.applyStyle('-webkit-transform', 'rotate(' + (inSender.value) + 'deg)');
 	},
 
 	spin: function() {
@@ -20,7 +19,7 @@ enyo.kind({
 	resizePointer: function() {
 		var min = Math.min(this.hasNode().clientWidth, this.hasNode().clientHeight, 1024) * .70;
 		this.$.pointer.applyStyle("width", min+"px");
-		this.$.pointer.applyStyle("margin-top", (min * .20)+"px");
+		this.$.pointer.applyStyle("margin-top", this.hasNode().clientHeight/2-min/2+"px");
 	},
 
 	rendered: function() {
