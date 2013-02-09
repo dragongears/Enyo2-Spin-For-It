@@ -5,7 +5,7 @@ enyo.kind({
 	style: "width:100%",
 	components: [
 		{name: 'pointer', kind: enyo.Image, src: "assets/arrow_1024.png"},
-		{name: "animator", kind: enyo.Animator, duration: 1000, onStep: "stepAnimation"}
+		{name: "animator", kind: enyo.Animator, duration: 4000, onStep: "stepAnimation"}
 	],
 
 	stepAnimation: function(inSender, inValue) {
@@ -14,7 +14,7 @@ enyo.kind({
 	},
 
 	spin: function() {
-		this.$.animator.play({startValue: 0, endValue: 1000 + (Math.floor(Math.random() * 360)), easingFunction: enyo.easing.cubicOut});
+		this.$.animator.play({startValue: 0, endValue: (360*4) + (Math.floor(Math.random() * 360)), easingFunction: enyo.easing.cubicOut});
 	},
 
 	resizePointer: function() {
