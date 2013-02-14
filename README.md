@@ -1,5 +1,4 @@
-Spin For It
-===========
+#Spin For It
 
 A spinning decision maker app written in JavaScript. Based on the Bootplate template for creating packaged Enyo apps.
 
