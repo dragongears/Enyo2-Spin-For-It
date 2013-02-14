@@ -4,7 +4,7 @@ enyo.kind({
 	handlers: {'ontap': 'spin'},
 	style: "width:100%",
 	components: [
-		{name: 'pointer', kind: enyo.Image, src: "assets/arrow_1024.png"},
+		{name: 'pointer', kind: enyo.Image, src: "assets/hand_1024.png"},
 		{name: "animator", kind: enyo.Animator, duration: 4000, onStep: "stepAnimation"}
 	],
 
