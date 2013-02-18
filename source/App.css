@@ -2,19 +2,3 @@
 	Put anything you reference with "url()" in ../assets/
 	This way, you can minify your application, and just remove the "source" folder for production
 */
-.nice-padding {
-	padding: 15px;
-}
-
-.hand {
-	width:1024px;
-	height:1024px;
-	-webkit-transform: rotate(45deg);
-	background-image:url('../assets/arrow_1024.png');
-}
-
-.btn {
-	margin-top:12px;
-	width:256px;
-}
-

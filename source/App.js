@@ -4,7 +4,7 @@ enyo.kind({
 	handlers: {'ontap': 'spin'},
 	style: "width:100%",
 	components: [
-		{name: 'pointer', kind: enyo.Image, src: "assets/hand_1024.png"},
+		{name: 'pointer', style: "-webkit-transform:translateZ(0);-o-transform:translateZ(0);-moz-transform:translateZ(0);transform:translateZ(0);", kind: enyo.Image, src: "assets/hand_1024.png"},
 		{name: "animator", kind: enyo.Animator, duration: 4000, onStep: "stepAnimation"}
 	],
 
@@ -17,7 +17,7 @@ enyo.kind({
 	},
 
 	resizePointer: function() {
-		var min = Math.min(this.hasNode().clientWidth, this.hasNode().clientHeight, 1024) * .70;
+		var min = Math.min(this.hasNode().clientWidth *.70, this.hasNode().clientHeight *.70, 1024);
 		this.$.pointer.applyStyle("width", min+"px");
 		this.$.pointer.applyStyle("margin-top", this.hasNode().clientHeight/2-min/2+"px");
 	},
