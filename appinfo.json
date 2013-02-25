@@ -1,0 +1,10 @@
+{
+	"id":"com.dragongears.spinforit",
+	"version":"1.0.0",
+	"vendor":"Dragongears",
+	"type":"web",
+	"main":"index.html",
+	"icon":"icon.png",
+	"title":"Spin For It",
+	"uiRevision":2
+}
