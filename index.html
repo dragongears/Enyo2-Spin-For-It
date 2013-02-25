@@ -7,7 +7,7 @@
 		<!-- -->
 		<meta http-equiv="Content-Type" content="text/html; charset=utf8"/>
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="viewport" content="target-densityDpi=device-dpi, height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
 		<!-- css -->
 		<link href="build/enyo.css" rel="stylesheet"/>
 		<link href="build/app.css" rel="stylesheet"/>
@@ -17,6 +17,8 @@
 	</head>
 	<body class="enyo-unselectable">
 		<script>
+            if(window.PalmSystem) window.PalmSystem.stageReady();
+
 			if (!window.App) {
 				alert('No application build found, redirecting to debug.html.');
 				location = 'debug.html';
