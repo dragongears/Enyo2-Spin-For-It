@@ -32,6 +32,10 @@ enyo.kind({
 	rendered: function() {
 		this.inherited(arguments);
 		this.resizePointer();
+		var self = this;
+		setTimeout(function() {
+			self.spin();
+		}, 2000);
 	},
 
 	resizeHandler: function(){
@@ -49,17 +53,32 @@ enyo.kind({
 	components: [
 		{kind: "onyx.Groupbox", classes: "prefs-groupbox", components: [
 			{kind: "onyx.GroupboxHeader", content: "Pointer Style"},
-			{content: "Hand"},
-			{content: "Arrow"},
-			{content: "Spinner"},
-			{content: "Bottle"}
+			{kind: "Group", classes: "onyx-sample-tools group", onActivate:"groupActivated", highlander: true, components: [
+				{kind:"onyx.Checkbox", checked: true},
+				{content: "Hand", classes:"enyo-inline"},
+				{tag:"br"},
+				{kind:"onyx.Checkbox"},
+				{content: "Arrow", classes:"enyo-inline"},
+				{tag:"br"},
+				{kind:"onyx.Checkbox"},
+				{content: "Spinner", classes:"enyo-inline"},
+				{tag:"br"},
+				{kind:"onyx.Checkbox"},
+				{content: "Bottle", classes:"enyo-inline"}
+			]}
 		]},
 		{kind: "onyx.Groupbox", classes: "prefs-groupbox", components: [
 			{kind: "onyx.GroupboxHeader", content: "Spin Duration"},
-			{content: "Short"},
-			{content: "Normal"},
-			{content: "Long"},
-			{content: "Very Long"}
+			{kind: "Group", classes: "onyx-sample-tools group", onActivate:"groupActivated", highlander: true, components: [
+				{kind:"onyx.Checkbox", checked: true},
+				{content:"Slow", classes:"enyo-inline"},
+				{tag:"br"},
+				{kind:"onyx.Checkbox"},
+				{content:"Normal", classes:"enyo-inline"},
+				{tag:"br"},
+				{kind:"onyx.Checkbox"},
+				{content:"Fast", classes:"enyo-inline"}
+			]}
 		]}
 	]
 });
@@ -114,16 +133,11 @@ enyo.kind({
 	kind: "FittableColumns",
 	fit: true,
 	components:[
-		{kind: "Signals", ondeviceready: "deviceReady"},
 		{kind: "Panels", name:"appPanels", index: 1, narrowFit: false, classes:"enyo-fit", arrangerKind: "CollapsingArranger", components: [
 			{kind: "PrefsPanel"},
 			{kind: "DragPanel", title: "Spin For It", onGrabberTap: "togglePanel"}
 		]}
 	],
-
-	deviceReady: function() {
-		this.$.Spinner.spin();
-	},
 
 	create: function() {
 		this.inherited(arguments);
