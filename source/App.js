@@ -1,8 +1,14 @@
+// Spin For It
+// A spinning decision maker app.
+
+
+// Spinner kind
+
 enyo.kind({
 	name: "Spinner",
 	kind: "enyo.Control",
 	handlers: {'ontap': 'spin'},
-	style: "width:100%",
+	style: "width:100%; text-align:center",
 	components: [
 		{name: 'pointer', style: "-webkit-transform:translateZ(0);-o-transform:translateZ(0);-moz-transform:translateZ(0);transform:translateZ(0);", kind: enyo.Image, src: "assets/hand_512.png"},
 		{name: "animator", kind: enyo.Animator, duration: 5000, onStep: "stepAnimation"}
@@ -34,18 +40,101 @@ enyo.kind({
 		}
 });
 
+
+// PrefsPanel Kind
+
+enyo.kind({
+	name: "PrefsPanel",
+	kind: "FittableRows",
+	components: [
+		{kind: "onyx.Groupbox", classes: "prefs-groupbox", components: [
+			{kind: "onyx.GroupboxHeader", content: "Pointer Style"},
+			{content: "Hand"},
+			{content: "Arrow"},
+			{content: "Spinner"},
+			{content: "Bottle"}
+		]},
+		{kind: "onyx.Groupbox", classes: "prefs-groupbox", components: [
+			{kind: "onyx.GroupboxHeader", content: "Spin Duration"},
+			{content: "Short"},
+			{content: "Normal"},
+			{content: "Long"},
+			{content: "Very Long"}
+		]}
+	]
+});
+
+
+// DragPanel Kind
+
+enyo.kind({
+	name: "DragPanel",
+	kind: "FittableRows",
+	style: "background-color:#ccc",
+	published: {
+		title: "",
+		dragAnywhere: false
+	},
+	events: {
+		onGrabberTap: ""
+	},
+	components: [
+		{name: "toolbar", kind: "onyx.Toolbar", components: [
+			{name: "grabber", kind: "onyx.Grabber", ontap: "grabberTapped"},
+			{name: "title"}
+		]},
+		{kind: "FittableRows", fit: true, ondragstart: "dragStart", components: [
+			{kind: 'Spinner', fit: true, name: 'spinner'}
+		]}
+	],
+
+	create: function() {
+		this.inherited(arguments);
+		this.titleChanged();
+	},
+
+	titleChanged: function() {
+		this.$.title.setContent(this.title);
+	},
+
+	dragStart: function() {
+		return !this.dragAnywhere
+	},
+
+	grabberTapped: function() {
+		this.doGrabberTap();
+	}
+});
+
+
+// App kind
+
 enyo.kind({
 	name: "App",
 	kind: "FittableColumns",
-	classes: "enyo-center",
-	components: [
-		{kind: "Signals", ondeviceready: "deviceready"},
-		{kind: 'Spinner', name: 'spinner'}
+	fit: true,
+	components:[
+		{kind: "Signals", ondeviceready: "deviceReady"},
+		{kind: "Panels", name:"appPanels", index: 1, narrowFit: false, classes:"enyo-fit", arrangerKind: "CollapsingArranger", components: [
+			{kind: "PrefsPanel"},
+			{kind: "DragPanel", title: "Spin For It", onGrabberTap: "togglePanel"}
+		]}
 	],
 
-	deviceready: function() {
+	deviceReady: function() {
 		this.$.Spinner.spin();
+	},
+
+	create: function() {
+		this.inherited(arguments);
+	},
+
+	rendered: function() {
+		this.inherited(arguments);
+	},
+
+	togglePanel: function() {
+		this.$.appPanels.setIndex(!this.$.appPanels.index);
 	}
-
-
 });
+
