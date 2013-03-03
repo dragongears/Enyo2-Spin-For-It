@@ -26,10 +26,6 @@ enyo.kind({
 	rendered: function() {
 		this.inherited(arguments);
 		this.resizePointer();
-		var self = this;
-		setTimeout(function() {
-			self.spin();
-		}, 2000);
 	},
 
 	resizeHandler: function(){
@@ -43,6 +39,13 @@ enyo.kind({
 	kind: "FittableColumns",
 	classes: "enyo-center",
 	components: [
+		{kind: "Signals", ondeviceready: "deviceready"},
 		{kind: 'Spinner', name: 'spinner'}
-	]
+	],
+
+	deviceready: function() {
+		this.$.Spinner.spin();
+	}
+
+
 });
