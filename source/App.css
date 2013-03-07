@@ -6,3 +6,15 @@
 .prefs-groupbox {
 	margin:20px;
 }
+
+.group {
+	padding-top:6px;
+}
+
+.group > * {
+	display:block;
+	width: auto;
+	padding-left: 35px;
+	line-height: 30px;
+	margin: 0 6px 6px 6px;
+}
