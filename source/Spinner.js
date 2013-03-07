@@ -13,10 +13,30 @@ enyo.kind({
 	kind: "enyo.Control",
 	handlers: {'ontap': 'spin'},
 	style: "width:100%; text-align:center",
+	published: {
+		duration: "normal",
+		pointer: "hand"
+	},
+	durations: {
+		short: {time: 1 * 1000, rotations: 360 * 2},
+		normal: {time: 5 * 1000, rotations: 360 * 10},
+		long: {time: 10 *1000, rotations: 360 * 20},
+		very_long: {time: 20 * 1000, rotations: 360 * 40}
+	},
+	pointers: {
+		hand: "hand",
+		arrow: "hand",
+		spinner: "spinner",
+		bottle: "spinner"
+	},
 	components: [
 		{name: 'pointer', style: "-webkit-transform:translateZ(0);-o-transform:translateZ(0);-moz-transform:translateZ(0);transform:translateZ(0);", kind: enyo.Image, src: "assets/hand_512.png"},
-		{name: "animator", kind: enyo.Animator, duration: 5000, onStep: "stepAnimation"}
+		{name: "animator", kind: enyo.Animator, onStep: "stepAnimation"}
 	],
+
+	pointerChanged: function(inOldValue) {
+		this.$.pointer.setAttribute('src', 'assets/' + this.pointers[this.pointer] + '_512.png');
+  },
 
 	stepAnimation: function(inSender, inValue) {
 		enyo.dom.transform(this.$.pointer, {rotate: (inSender.value % 360) + 'deg'});
@@ -24,13 +44,18 @@ enyo.kind({
 	},
 
 	spin: function() {
-		this.$.animator.play({startValue: 0, endValue: (3600) + (Math.floor(Math.random() * 360)), easingFunction: enyo.easing.cubicOut});
+		this.$.animator.play({duration: this.durations[this.duration].time, startValue: 0, endValue: (this.durations[this.duration].rotations) + (Math.floor(Math.random() * 360)), easingFunction: enyo.easing.cubicOut});
 	},
 
 	resizePointer: function() {
 		var min = Math.min(this.hasNode().clientWidth *.70, this.hasNode().clientHeight *.70, 512);
 		this.$.pointer.applyStyle("width", min+"px");
 		this.$.pointer.applyStyle("margin-top", this.hasNode().clientHeight/2-min/2+"px");
+	},
+
+	create: function () {
+		this.inherited(arguments);
+		this.setPointer("spinner");
 	},
 
 	rendered: function() {
