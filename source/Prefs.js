@@ -38,17 +38,33 @@ enyo.kind({
 
 	rendered: function() {
 		this.inherited(arguments);
-		this.$.hand.setChecked(true);
-		this.$.normal.setChecked(true);
+
+		var ptr = localStorage.pointer;
+		if (ptr) {
+			this.$[ptr].setChecked(true);
+		} else {
+			this.$.hand.setChecked(true);
+//			localStorage.pointer = "hand";
+		}
+
+		var dur = localStorage.duration;
+		if (dur) {
+			this.$[dur].setChecked(true);
+		} else {
+			this.$.normal.setChecked(true);
+//			localStorage.duration = "normal";
+		}
 	},
 
 	pointerGroupActivated: function(inSender, inEvent) {
-		console.log(">>>> groupActivated " + inEvent.originator.getName() + " " + inEvent.originator.getActive());
-		this.doPrefsPointerChange({pointer: inEvent.originator.getName()});
+		var ptr = inEvent.originator.getName();
+		this.doPrefsPointerChange({pointer: ptr});
+		localStorage.pointer = ptr;
 	},
 
 	durationGroupActivated: function(inSender, inEvent) {
-		console.log(">>>> groupActivated " + inEvent.originator.getName() + " " + inEvent.originator.getActive());
-		this.doPrefsDurationChange({duration: inEvent.originator.getName()});
+		var dur = inEvent.originator.getName();
+		this.doPrefsDurationChange({duration: dur});
+		localStorage.duration = dur;
 	}
 });
