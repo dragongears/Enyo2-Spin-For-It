@@ -25,9 +25,9 @@ enyo.kind({
 	},
 	pointers: {
 		hand: "hand",
-		arrow: "hand",
+		arrow: "arrow",
 		spinner: "spinner",
-		bottle: "spinner"
+		bottle: "bottle"
 	},
 	components: [
 		{name: 'pointer', style: "-webkit-transform:translateZ(0);-o-transform:translateZ(0);-moz-transform:translateZ(0);transform:translateZ(0);", kind: enyo.Image, src: "assets/hand_512.png"},
