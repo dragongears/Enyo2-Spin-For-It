@@ -30,7 +30,7 @@ enyo.kind({
 		bottle: "bottle"
 	},
 	components: [
-		{name: 'pointer', class: "enable3d", kind: enyo.Image, src: "assets/hand_512.png"},
+		{name: 'pointer', classes: "enable3d", kind: enyo.Image, src: "assets/hand_512.png"},
 		{name: "animator", kind: enyo.Animator, onStep: "stepAnimation"}
 	],
 
@@ -64,7 +64,7 @@ enyo.kind({
 		var self = this;
 		setTimeout(function() {
 			self.spin();
-		}, 2000);
+		}, 1000);
 	},
 
 	resizeHandler: function(){
