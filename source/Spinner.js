@@ -72,10 +72,9 @@ enyo.kind({
 	rendered: function() {
 		this.inherited(arguments);
 		this.resizePointer();
-		var that = this;
-		setTimeout(function() {
-			that.spin();
-		}, 2000);
+		setTimeout(enyo.bind(this, function() {
+			this.spin();
+		}), 2000);
 	},
 
 	resizeHandler: function(){

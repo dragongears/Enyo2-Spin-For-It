@@ -45,8 +45,7 @@ enyo.kind({
 				{name: "very_long", content: "Very Long"}
 			]}
 		]},
-		{classes: "group", style: "margin:20px;", content: "Version 1.0.0" },
-		{classes: "group", style: "margin:20px;", allowHtml: true, content: "<a href='http://dragongears.com'>dragongears.com</a>" }
+		{classes: "prefs-groupbox", style: "position:absolute;bottom:0", allowHtml: true, content: "Version 1.0.0<br />dragongears.com" }
 	],
 
 	rendered: function() {
@@ -57,7 +56,6 @@ enyo.kind({
 			this.$[ptr].setChecked(true);
 		} else {
 			this.$.hand.setChecked(true);
-//			localStorage.pointer = "hand";
 		}
 
 		var dur = localStorage.duration;
@@ -65,7 +63,6 @@ enyo.kind({
 			this.$[dur].setChecked(true);
 		} else {
 			this.$.normal.setChecked(true);
-//			localStorage.duration = "normal";
 		}
 	},
 
