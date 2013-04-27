@@ -75,11 +75,16 @@ enyo.kind({
 	kind: "FittableColumns",
 	fit: true,
 	components:[
+		{kind: "Signals", ondeviceready: "deviceready"},
 		{kind: "Panels", name:"appPanels", index: 1, narrowFit: false, classes:"enyo-fit", arrangerKind: "CollapsingArranger", components: [
 			{kind: "PrefsPanel", onPrefsPointerChange: "prefsPointerChange", onPrefsDurationChange: "prefsDurationChange"},
 			{name: "dp", kind: "DragPanel", title: "Spin For It", onGrabberTap: "togglePanel"}
 		]}
 	],
+
+	deviceready: function() {
+		navigator.splashscreen.hide();
+	},
 
 	create: function() {
 		this.inherited(arguments);
