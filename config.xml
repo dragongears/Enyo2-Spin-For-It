@@ -14,7 +14,7 @@
         Art Dahm
     </author>
 
-    <preference name="phonegap-version"           value="2.3.0" />
+    <preference name="phonegap-version"           value="2.5.0" />
     <preference name="target-device"              value="universal" />
     <preference name="orientation"                value="both" />
     <preference name="webviewbounce"              value="false" />
