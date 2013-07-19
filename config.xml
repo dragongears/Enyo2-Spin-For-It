@@ -20,7 +20,7 @@
     <preference name="webviewbounce"              value="false" />
     <preference name="prerendered-icon"           value="true" />
     <preference name="auto-hide-splash-screen"    value="false" />
-		<preference name="permissions" value="none"/>
+	<preference name="permissions"                value="none"/>
 
     <icon src="assets/icons/icon-72-2x.png" />
     <icon src="assets/icons/36x36.png"              gap:platform="android"    gap:density="ldpi" />
@@ -31,7 +31,7 @@
     <icon src="assets/icons/icon-72.png"            gap:platform="ios"        width="72" height="72" />
     <icon src="assets/icons/icon-57-2x.png"         gap:platform="ios"        width="114" height="114" />
     <icon src="assets/icons/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />
-		<icon src="assets/icons/64x64.png"              gap:platform="webos" />
+	<icon src="assets/icons/64x64.png"              gap:platform="webos" />
 
     <gap:splash src="assets/splashscreens/200x320.png"                      gap:platform="android" gap:density="ldpi" />
     <gap:splash src="assets/splashscreens/320x480.png"                      gap:platform="android" gap:density="mdpi" />
