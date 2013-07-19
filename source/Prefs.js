@@ -27,25 +27,27 @@ enyo.kind({
 		onPrefsDurationChange: ""
 	},
 	components: [
-		{kind: "onyx.Groupbox", classes: "prefs-groupbox", components: [
-			{kind: "onyx.GroupboxHeader", content: "Pointer Style"},
-			{kind: "onyx.RadioGroup", defaultKind: "onyx.Checkbox", classes: "onyx-sample-tools group", onActivate:"pointerGroupActivated", highlander: true, components: [
-				{name: "hand", content: "Hand"},
-				{name: "arrow", content: "Arrow"},
-				{name: "spinner", content: "Spinner"},
-				{name: "bottle", content: "Bottle"}
-			]}
-		]},
-		{kind: "onyx.Groupbox", classes: "prefs-groupbox", components: [
-			{kind: "onyx.GroupboxHeader", content: "Spin Duration"},
-			{kind: "onyx.RadioGroup", defaultKind: "onyx.Checkbox", classes: "onyx-sample-tools group", onActivate:"durationGroupActivated", highlander: true, components: [
-				{name: "short", content: "Short"},
-				{name: "normal", content: "Normal"},
-				{name: "long", content: "Long"},
-				{name: "very_long", content: "Very Long"}
-			]}
-		]},
-		{classes: "prefs-groupbox", style: "position:absolute;bottom:0", allowHtml: true, content: "Version 1.0.0<br />dragongears.com" }
+        {kind: "enyo.Scroller", touch: true, fit: true, components: [
+            {kind: "onyx.Groupbox", classes: "prefs-groupbox", components: [
+                {kind: "onyx.GroupboxHeader", content: "Pointer Style"},
+                {kind: "onyx.RadioGroup", defaultKind: "onyx.Checkbox", classes: "onyx-sample-tools group", onActivate:"pointerGroupActivated", highlander: true, components: [
+                    {name: "hand", content: "Hand"},
+                    {name: "arrow", content: "Arrow"},
+                    {name: "spinner", content: "Spinner"},
+                    {name: "bottle", content: "Bottle"}
+                ]}
+            ]},
+            {kind: "onyx.Groupbox", classes: "prefs-groupbox", components: [
+                {kind: "onyx.GroupboxHeader", content: "Spin Duration"},
+                {kind: "onyx.RadioGroup", defaultKind: "onyx.Checkbox", classes: "onyx-sample-tools group", onActivate:"durationGroupActivated", highlander: true, components: [
+                    {name: "short", content: "Short"},
+                    {name: "normal", content: "Normal"},
+                    {name: "long", content: "Long"},
+                    {name: "very_long", content: "Very Long"}
+                ]}
+            ]}
+        ]},
+		{classes: "prefs-groupbox", allowHtml: true, content: "Version 1.1.0<br />dragongears.com" }
 	],
 
 	rendered: function() {
