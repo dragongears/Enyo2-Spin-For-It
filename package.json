@@ -1,0 +1,31 @@
+{
+  "name": "spinforit",
+  "version": "1.1.0",
+  "description": "A spinning decision maker app.",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dragongears/Enyo2-Spin-For-It.git"
+  },
+  "keywords": [
+    "game",
+    "spinner",
+    "decision"
+  ],
+  "author": "Art Dahm",
+  "license": "Apache 2.0",
+  "gitHead": "79dccf07e2fb3d40e6a8dc0b3d17f78f84252438",
+  "readmeFilename": "README.md",
+  "id": "com.dragongears.spinforit",
+  "vendor": "Dragongears",
+  "type": "web",
+  "icon": "icon.png",
+  "title": "Spin For It",
+  "uiRevision": 2,
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-compress": "~0.5.0",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-phonegap-build": "0.0.6"
+  }
+}
