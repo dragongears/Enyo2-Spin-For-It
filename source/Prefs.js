@@ -80,3 +80,4 @@ enyo.kind({
 		localStorage.duration = dur;
 	}
 });
+

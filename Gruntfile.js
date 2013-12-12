@@ -4,15 +4,24 @@ module.exports = function(grunt) {
 	  pkg: grunt.file.readJSON('package.json'),
 		clean: ["deploy/*", "build/*"],
 		compress: {
-		  "phonegap-build": {
-		    options: {
-		      archive: 'deploy/<%= pkg.id %>_<%= pkg.version %>.zip'
-		    },
-		    files: [
-		      {expand: true, cwd: 'deploy/<%= pkg.name %>/', src: ['**'], dest: ''},
-		      {expand: true, src: ['config.xml'], dest: ''}
-		    ]
-		  }
+            "phonegap-build": {
+        		    options: {
+        		      archive: 'deploy/<%= pkg.id %>_<%= pkg.version %>_pgb.zip'
+        		    },
+        		    files: [
+        		      {expand: true, cwd: 'deploy/<%= pkg.name %>/', src: ['**'], dest: ''},
+        		      {flatten: true, expand: true, src: ['platforms/phonegap_build/config.xml'], dest: '/'}
+        		    ]
+        		  },
+            "tizen": {
+        		    options: {
+        		      archive: 'deploy/<%= pkg.id %>_<%= pkg.version %>_tizen.zip'
+        		    },
+        		    files: [
+        		      {expand: true, cwd: 'deploy/<%= pkg.name %>/', src: ['**'], dest: ''},
+        		      {flatten: true, expand: true, src: ['platforms/tizen/config.xml'], dest: '/'}
+        		    ]
+        		  }
 		},
 		"phonegap-build": {
 			debug: {
@@ -49,18 +58,22 @@ module.exports = function(grunt) {
 		grunt.log.writeln('Deploying app');
 		shell.exec('sh tools/deploy.sh');
 
-		grunt.log.writeln('Copying PhoneGap Build config.xml file...');
-		grunt.file.copy('config.xml', 'deploy/' + grunt.config('pkg.name') + '/config.xml');
-
-		grunt.log.writeln('Creating webOS appinfo.json file from package.json...');
-		grunt.file.copy('package.json', 'deploy/' + grunt.config('pkg.name') + '/appinfo.json');
+//		grunt.log.writeln('Copying PhoneGap Build config.xml file...');
+//		grunt.file.copy('config.xml', 'deploy/' + grunt.config('pkg.name') + '/config.xml');
+//
 	});
 
 	grunt.registerTask('palm-package', 'Package a webOS *.ipk from deployed app.', function() {
 		var shell = require('shelljs');
 
+        grunt.log.writeln('Creating webOS appinfo.json file from package.json...');
+   		grunt.file.copy('package.json', 'deploy/' + grunt.config('pkg.name') + '/appinfo.json');
+
 		grunt.log.writeln('Packaging webOS app...');
 		shell.exec('palm-package -o deploy deploy/' + grunt.config('pkg.name') + '/');
+
+        grunt.log.writeln('Deleting appinfo.json file...');
+        grunt.file.delete('deploy/' + grunt.config('pkg.name') + '/appinfo.json');
 	});
 
 };
