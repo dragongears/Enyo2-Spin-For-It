@@ -2,3 +2,5 @@
 /deploy
 /.idea
 *.iml
+/node_modules
+*.xcf
