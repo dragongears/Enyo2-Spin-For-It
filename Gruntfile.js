@@ -26,12 +26,13 @@ module.exports = function(grunt) {
 		"phonegap-build": {
 			debug: {
 				options: {
-					archive: "deploy/<%= pkg.id %>_<%= pkg.version %>.zip",
+					archive: "deploy/<%= pkg.id %>_<%= pkg.version %>_pgb.zip",
 					"appId": "367891",
 					"user": {
 						"email": "art@dragongears.com",
 						"password": "binky1802"
-					}
+					},
+                    timeout: 30000 // Measured in milliseconds
 				}
 			},
 			release: {
@@ -40,7 +41,8 @@ module.exports = function(grunt) {
 					"appId": "367891",
 					"user": {
 						"token": "zj3PNEbTNLpzCxDk8hHB"
-					}
+					},
+                    timeout: 30000 // Measured in milliseconds
 				}
 			}
 		}
