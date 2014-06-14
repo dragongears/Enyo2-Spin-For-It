@@ -51,7 +51,6 @@ enyo.kind({
 
 	stepAnimation: function(inSender, inValue) {
 		enyo.dom.transform(this.$.pointer, {rotate: (inSender.value % 360) + 'deg'});
-//		this.$.pointer.setStyle('-webkit-transform: rotate('+ (inSender.value % 360) +'deg)');
 	},
 
 	spin: function() {

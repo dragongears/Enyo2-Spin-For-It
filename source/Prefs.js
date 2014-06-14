@@ -26,6 +26,10 @@ enyo.kind({
 		onPrefsPointerChange: "",
 		onPrefsDurationChange: ""
 	},
+	published: {
+		pointer: "hand",
+		duration: "normal"
+	},
 	components: [
         {kind: "enyo.Scroller", touch: true, fit: true, components: [
             {kind: "onyx.Groupbox", classes: "prefs-groupbox", components: [
@@ -72,12 +76,14 @@ enyo.kind({
 		var ptr = inEvent.originator.getName();
 		this.doPrefsPointerChange({pointer: ptr});
 		localStorage.pointer = ptr;
+		this.set("pointer", ptr);
 	},
 
 	durationGroupActivated: function(inSender, inEvent) {
 		var dur = inEvent.originator.getName();
 		this.doPrefsDurationChange({duration: dur});
 		localStorage.duration = dur;
+		this.set("duration", dur);
 	}
 });
 

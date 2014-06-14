@@ -25,11 +25,17 @@ enyo.kind({
 	style: "background-color:#ccc",
 	published: {
 		title: "",
-		dragAnywhere: false
+		dragAnywhere: false,
+		duration: "normal",
+		pointer: "hand"
 	},
 	events: {
 		onGrabberTap: ""
 	},
+	bindings: [
+		{from: ".pointer", to: ".$.spinner.pointer"},
+		{from: ".duration", to: ".$.spinner.duration"}
+	],
 	components: [
 		{name: "toolbar", kind: "onyx.Toolbar", components: [
 			{name: "grabber", kind: "onyx.Grabber", ontap: "grabberTapped"},
@@ -55,14 +61,6 @@ enyo.kind({
 
 	grabberTapped: function() {
 		this.doGrabberTap();
-	},
-
-	prefsPointerChange: function(pointer) {
-		this.$.spinner.setPointer(pointer);
-	},
-
-	prefsDurationChange: function(duration) {
-		this.$.spinner.setDuration(duration);
 	}
 
 });
@@ -74,12 +72,24 @@ enyo.kind({
 	name: "App",
 	kind: "FittableColumns",
 	fit: true,
+	published: {
+		pointer: "hand",
+		duration: "normal"
+	},
 	components:[
 		{kind: "Signals", ondeviceready: "deviceready"},
+		{name: "test", content: "Test"},
 		{kind: "Panels", name:"appPanels", index: 1, narrowFit: false, classes:"enyo-fit", arrangerKind: "CollapsingArranger", components: [
-			{kind: "PrefsPanel", onPrefsPointerChange: "prefsPointerChange", onPrefsDurationChange: "prefsDurationChange"},
+			{name: "pp", kind: "PrefsPanel", onPrefsPointerChange: "prefsPointerChange", onPrefsDurationChange: "prefsDurationChange"},
 			{name: "dp", kind: "DragPanel", title: "Spin For It", onGrabberTap: "togglePanel"}
 		]}
+	],
+
+	bindings: [
+		{from: ".$.pp.pointer", to: ".pointer"},
+		{from: ".$.pp.duration", to: ".duration"},
+		{from: ".pointer", to: ".$.dp.pointer"},
+		{from: ".duration", to: ".$.dp.duration"}
 	],
 
 	deviceready: function() {
@@ -96,14 +106,6 @@ enyo.kind({
 
 	togglePanel: function() {
 		this.$.appPanels.setIndex(!this.$.appPanels.index);
-	},
-
-	prefsPointerChange: function(inSender, inValue) {
-		this.$.dp.prefsPointerChange(inValue.pointer);
-	},
-
-	prefsDurationChange: function(inSender, inValue) {
-		this.$.dp.prefsDurationChange(inValue.duration);
 	}
 });
 
