@@ -78,7 +78,6 @@ enyo.kind({
 	},
 	components:[
 		{kind: "Signals", ondeviceready: "deviceready"},
-		{name: "test", content: "Test"},
 		{kind: "Panels", name:"appPanels", index: 1, narrowFit: false, classes:"enyo-fit", arrangerKind: "CollapsingArranger", components: [
 			{name: "pp", kind: "PrefsPanel", onPrefsPointerChange: "prefsPointerChange", onPrefsDurationChange: "prefsDurationChange"},
 			{name: "dp", kind: "DragPanel", title: "Spin For It", onGrabberTap: "togglePanel"}

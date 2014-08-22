@@ -76,7 +76,7 @@ enyo.kind({
 		}), 2000);
 	},
 
-	resizeHandler: function(){
+	handleResize: function(){
 		this.inherited(arguments);
 		this.resizePointer();
 		}
