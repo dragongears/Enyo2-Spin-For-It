@@ -16,9 +16,22 @@
 // limitations under the License.
 //
 
+// PrefsModel model
+enyo.kind({
+	name: 'PrefsModel',
+	kind: 'enyo.Model',
+	source: 'localStorage',
+	options: {
+		commit: true
+	},
+
+	defaults: {
+		pointer: 'bottle',
+		duration: 'short'
+	}
+});
 
 // PrefsPanel Kind
-
 enyo.kind({
 	name: "PrefsPanel",
 	kind: "FittableRows",
@@ -30,6 +43,13 @@ enyo.kind({
 		pointer: "hand",
 		duration: "normal"
 	},
+
+	model: "",
+
+	bindings: [
+		{from: ".model.pointer", to: ".pointer"},
+		{from: ".model.duration", to: ".duration"}
+	],
 	components: [
         {kind: "enyo.Scroller", touch: true, fit: true, components: [
             {kind: "onyx.Groupbox", classes: "prefs-groupbox", components: [
@@ -51,39 +71,36 @@ enyo.kind({
                 ]}
             ]}
         ]},
-		{classes: "prefs-groupbox", allowHtml: true, content: "Version 1.1.0<br />dragongears.com" }
+		{classes: "prefs-groupbox", allowHtml: true, content: "Version 1.2.0<br />dragongears.com" }
 	],
+
+	create: function() {
+		this.inherited(arguments);
+		this.model = new PrefsModel({
+			pointer: 'bottle',
+			duration: 'short'
+		});
+	},
 
 	rendered: function() {
 		this.inherited(arguments);
 
-		var ptr = localStorage.pointer;
-		if (ptr) {
-			this.$[ptr].setChecked(true);
-		} else {
-			this.$.hand.setChecked(true);
-		}
+		var ptr = this.model.get('pointer');
+		this.$[ptr].setChecked(true);
 
-		var dur = localStorage.duration;
-		if (dur) {
-			this.$[dur].setChecked(true);
-		} else {
-			this.$.normal.setChecked(true);
-		}
+		var dur = this.model.get('duration');
+		this.$[dur].setChecked(true);
 	},
 
 	pointerGroupActivated: function(inSender, inEvent) {
 		var ptr = inEvent.originator.getName();
 		this.doPrefsPointerChange({pointer: ptr});
-		localStorage.pointer = ptr;
-		this.set("pointer", ptr);
+		this.model.set("pointer", ptr);
 	},
 
 	durationGroupActivated: function(inSender, inEvent) {
 		var dur = inEvent.originator.getName();
 		this.doPrefsDurationChange({duration: dur});
-		localStorage.duration = dur;
-		this.set("duration", dur);
+		this.model.set("duration", dur);
 	}
 });
-

@@ -1,7 +1,8 @@
 //
 // Spin For It
 // A spinning decision maker app.
-// Copyright 2012-2013 Arthur J. Dahm III
+// Version 1.2.0
+// Copyright 2012-2014 Arthur J. Dahm III
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -93,10 +94,12 @@ enyo.kind({
 
 	deviceready: function() {
 		navigator.splashscreen.hide();
+		this.log("deviceready");
 	},
 
 	create: function() {
 		this.inherited(arguments);
+		enyo.LocalStorageSource.create({prefix: 'spinforit', name: 'localStorage'});
 	},
 
 	rendered: function() {
